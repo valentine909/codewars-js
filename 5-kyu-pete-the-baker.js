@@ -3,7 +3,7 @@
 function cakes(recipe, available) {
     let min_qauntity = Infinity;
     for (let elem in recipe) {
-        let quantity = (available[elem] === undefined) ? 0 : ~~(available[elem] / recipe[elem]);
+        let quantity = (~~(available[elem] / recipe[elem]) || 0);
         min_qauntity = (quantity < min_qauntity) ? quantity : min_qauntity;
     }
     return min_qauntity === Infinity ? 0 : min_qauntity;
