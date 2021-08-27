@@ -6,18 +6,23 @@ class User {
         this._progress = 0;
         this.ranks = [-8, -7, -6, -5, -4, -3, -2, -1, 1, 2, 3, 4, 5, 6, 7, 8];
     }
+
     get rank() {
         return this._rank;
     }
+
     get progress() {
         return this._progress;
     }
+
     set rank(value) {
         this._rank = value;
     }
+
     set progress(value) {
         this._progress = value;
     }
+
     incProgress(num) {
         if (num < -8 || num > 8 || num === 0) {
             throw 'Wrong rank!'
