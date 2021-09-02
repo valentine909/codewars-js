@@ -7,7 +7,7 @@ class Primes {
         while (true) {
             const prime = gen.next().value;
             yield prime;
-            gen = this.filter(gen, n => n % prime !== 0);
+            gen = this.filter(gen, prime);
         }
     }
 
@@ -15,12 +15,12 @@ class Primes {
         while (true) yield i = i + 2;
     }
 
-    static* filter(generator, func) {
-        for (const n of generator) if (func(n)) yield n;
+    static* filter(generator, prime) {
+        for (const n of generator) if (n % prime !== 0) yield n;
     }
 }
 
 gen = Primes.stream();
-for (let j = 0; j < 10000; j++) {
+for (let j = 0; j < 100; j++) {
     console.log(gen.next().value);
 }
