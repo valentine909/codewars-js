@@ -1,43 +1,39 @@
 // https://www.codewars.com/kata/5784c8116211383b5f0001d3/
 
 class File {
-    #fullName;
-    #extension;
-    #filename;
-    #contents;
-    #linesCount;
-    #charsCount;
-    #lines;
     constructor(fullName, contents) {
-        this.#fullName = fullName;
-        this.#extension = fullName.split(".").pop();
-        this.#filename = fullName.replace(this.#extension, "");
-        this.#contents = contents;
-        this.#linesCount = 0;
-        this.#charsCount = 0;
-        this.#lines = this.#contents.split("\n");
+        this._fullName = fullName;
+        let parts = fullName.split(".");
+        this._extension = parts.pop();
+        this._filename = parts.join(".");
+        this._lines = contents.split("\n").filter(x => x !== "");
+        this._linesCount = 0;
+        this._charsCount = 0;
     }
     get fullName() {
-        return this.#fullName;
+        return this._fullName;
     }
     get filename() {
-        return this.#filename;
+        return this._filename;
     }
     get extension() {
-        return this.#extension;
+        return this._extension;
     }
     getContents() {
-        return this.#contents
+        return this._lines.join("\n");
     }
     write(someText) {
-        this.#contents = someText;
+        this._lines.push(someText);
     }
     gets() {
-        this.#linesCount++;
-        return this.#lines[this.#linesCount - 1];
+        this._linesCount++;
+        return this._lines[this._linesCount - 1];
     }
     getc() {
-        this.#charsCount++;
-        return this.#contents[this.#charsCount - 1];
+        this._charsCount++;
+        return this.getContents()[this._charsCount - 1];
     }
 }
+var example = new File("class.phptester.php", "<?php /* Some PHP code here */ ?>");
+console.log(example.filename)
+console.log("class.phptester.php".split("."))
