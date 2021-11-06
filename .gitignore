@@ -1,3 +1,8 @@
 /beta-uncurrying.js
 /.idea
 .gitignore
+/test.js
+package-lock.json
+package.json
+/package.json
+node_modules
